@@ -7,7 +7,7 @@ double f(double x);
 double df(double x);
 void bisection(double a, double b);
 void regulaFalsi(double a, double b);
-double nRapson(double x);
+void nRapson(double x);
 
 int main() {
     printf(
@@ -17,15 +17,16 @@ int main() {
     int op;
     scanf("%d", &op);
     switch (op) {
+        double ul, ll;
         case 1:
             printf("Enter lower n upper bounds\n");
-            double ul, ll;
+
             scanf("%lf %lf", &ll, &ul);
             bisection(ll, ul);
             break;
         case 2:
             printf("Enter lower n upper bounds\n");
-            double ul, ll;
+
             scanf("%lf %lf", &ll, &ul);
             regulaFalsi(ul, ll);
             break;
@@ -44,7 +45,7 @@ int main() {
     nRapson(ll);
 }
 
-double nRapson(double x) {
+void nRapson(double x) {
     double h = f(x) / df(x);
     while ((h > 0.0 && h >= LIMIT) || (h < 0.0 && h >= -LIMIT)) {
         h = f(x) / df(x);
