@@ -7,10 +7,11 @@ struct data {
 
 typedef struct data data;
 double lagrange(data a[], int n, double xi);
+double forwarDiff(data a[], int n, double xi);
 
 int main() {
     data ar[] = {{1, 1}, {2, 8}, {3, 27}, {4, 64}};
-    printf("%lf", lagrange(ar, 4, 2.5));
+    printf("%lf", forwarDiff(ar, 4, 2.5));
 }
 
 double lagrange(data a[], int n, double xi) {
@@ -37,4 +38,13 @@ double forwarDiff(data a[], int n, double xi) {
             yd[j][i] = yd[j + 1][i - 1] - yd[j][i - 1];
     }
     double r = (xi - a[0].x) / (a[1].x - a[0].x);
+    double num = r;
+    double deno = 1;
+    int sum = yd[0][0];
+    for (int i = 1; i < n; i++) {
+        deno *= i + 1;
+        sum += (num * yd[0][i]) / deno;
+        num *= (r - i);
+    }
+    return sum;
 }
