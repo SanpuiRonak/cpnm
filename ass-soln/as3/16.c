@@ -19,6 +19,6 @@ int main() {
         printf("\n");
     }
     printf(
-        "The number of positives, zeroes and negatives are %d, %d and %d "
-        "respectively.",
-        1, 0, 1);
+        "The number of positives are %d\nZeroes are %d,\nand negatives are %d",
+        p, zero, n);
+}

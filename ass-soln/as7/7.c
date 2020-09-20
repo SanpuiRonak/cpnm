@@ -31,5 +31,9 @@ double forwarDiff(data a[], int n, double xi) {
     for (int i = 0; i < n; i++) {
         yd[i][0] = a[i].y;
     }
-    (int)double r = (xi - a[0].x) / (a[1].x - a[0].x);
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < n - i; j++)
+            yd[j][i] = yd[j + 1][i - 1] - yd[j][i - 1];
+    }
+    double r = (xi - a[0].x) / (a[1].x - a[0].x);
 }
