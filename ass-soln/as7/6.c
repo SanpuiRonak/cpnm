@@ -1,8 +1,8 @@
 #include <stdio.h>
 
 struct data {
-    int x;
-    int y;
+    double x;
+    double y;
 };
 
 typedef struct data data;
@@ -11,8 +11,17 @@ double forwardDiff(data a[], int n, double xi);
 double backwardDiff(data a[], int n, double xi);
 
 int main() {
-    // defined data table
-    data ar[] = {{1, 1}, {2, 8}, {3, 27}, {4, 64}};
+    int n;
+    printf("Enter data set size:");
+    scanf("%d", &n);
+    data ar[n];
+    printf("Enter x f(x) in this format for whole set\n");
+    for (int i = 0; i < n; i++) {
+        scanf("%lf %lf", &(ar[i].x), &(ar[i].y));
+    }
+    printf("Enter value to be interploated\n");
+    double value;
+    scanf("%lf", &value);
     printf(
         "Enter 1 for Lagrange method,\n"
         "2 for Newton's forward difference method,\n"
@@ -22,15 +31,15 @@ int main() {
     switch (op) {
         case 1:
             printf("Result through Lagrange method is %lf",
-                   lagrange(ar, 4, 2.5));
+                   lagrange(ar, n, value));
             break;
         case 2:
             printf("Result through Newton's forward difference method is %lf",
-                   forwardDiff(ar, 4, 2.5));
+                   forwardDiff(ar, n, value));
             break;
         case 3:
             printf("Result through Newton's backward difference method is %lf",
-                   backwardDiff(ar, 4, 2.5));
+                   backwardDiff(ar, n, value));
             break;
         default:
             printf("Invalid choice please try again");
