@@ -1,22 +1,18 @@
 #include <stdio.h>
 
-int main() {
-    printf("Enter File to open\n");
-    char fileName1[100];
-    gets(fileName1);
-
-    printf("Enter File to copy to\n");
-    char fileName2[100];
-    gets(fileName2);
-
-    FILE *base = fopen(fileName1, "r");
-    FILE *copy = fopen(fileName2, "w");
+int main(int argc, char *argv[]) {
+    if (argc < 3) {
+        printf("Too few arguments!\n");
+        return 0;
+    }
+    FILE *base = fopen(argv[1], "r");
+    FILE *copy = fopen(argv[2], "w");
 
     if (base == NULL) {
-        printf("Cannot find %s", fileName1);
+        printf("Cannot find %s", argv[1]);
         return 0;
     } else if (copy == NULL) {
-        printf("Cannot find %s", fileName2);
+        printf("Cannot find %s", argv[2]);
         return 0;
     }
 
